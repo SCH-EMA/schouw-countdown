@@ -12,23 +12,19 @@
       background-color: transparent;
     }
 
-    html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent !important;
-      background-color: transparent !important;
-    }
-
+    html,
     body {
       margin: 0;
       padding: 0;
       width: 100%;
       background: transparent !important;
       background-color: transparent !important;
-      color: #ffffff;
+    }
+
+    body {
+      color: #00425c;
       font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
     }
 
     .countdown-wrapper {
@@ -47,7 +43,6 @@
     .countdown {
       width: 100%;
       max-width: 950px;
-
       text-align: center;
 
       background: transparent !important;
@@ -62,7 +57,7 @@
       line-height: 1.1;
       font-weight: 400;
 
-      color: #ffffff;
+      color: #00425c;
 
       background: transparent !important;
       background-color: transparent !important;
@@ -80,9 +75,7 @@
 
     .unit {
       min-width: 76px;
-
       background: transparent !important;
-      background-color: transparent !important;
     }
 
     .number {
@@ -93,15 +86,13 @@
       font-weight: 700;
       font-variant-numeric: tabular-nums;
 
-      color: #ffffff;
+      color: #00425c;
 
       background: transparent !important;
-      background-color: transparent !important;
     }
 
     .label {
       display: block;
-
       margin-top: 7px;
 
       font-size: 9px;
@@ -109,10 +100,9 @@
       letter-spacing: 1.4px;
       text-transform: uppercase;
 
-      color: #ffffff;
+      color: #00425c;
 
       background: transparent !important;
-      background-color: transparent !important;
     }
 
     .date {
@@ -121,24 +111,22 @@
       font-size: 13px;
       line-height: 1.2;
 
-      color: #ffffff;
+      color: #00425c;
 
       background: transparent !important;
-      background-color: transparent !important;
     }
 
     .finished-message {
       font-family: Georgia, "Times New Roman", serif;
       font-size: 24px;
+      line-height: 1.2;
 
-      color: #ffffff;
+      color: #00425c;
 
       background: transparent !important;
-      background-color: transparent !important;
     }
 
     @media (max-width: 700px) {
-
       .countdown-wrapper {
         height: 190px;
         padding: 16px 14px;
@@ -163,6 +151,7 @@
 
       .label {
         font-size: 8px;
+        letter-spacing: 1px;
       }
 
       .date {
@@ -173,17 +162,12 @@
   </style>
 </head>
 
-
 <body>
 
   <div class="countdown-wrapper">
-
     <div class="countdown">
 
-      <h1>
-        Schouw &amp; Co. Capital Markets Day
-      </h1>
-
+      <h1>Schouw &amp; Co. Capital Markets Day</h1>
 
       <div class="numbers" id="countdownNumbers">
 
@@ -192,18 +176,15 @@
           <span class="label">Days</span>
         </div>
 
-
         <div class="unit">
           <span class="number" id="hours">00</span>
           <span class="label">Hours</span>
         </div>
 
-
         <div class="unit">
           <span class="number" id="minutes">00</span>
           <span class="label">Minutes</span>
         </div>
-
 
         <div class="unit">
           <span class="number" id="seconds">00</span>
@@ -212,114 +193,67 @@
 
       </div>
 
-
       <div class="date">
         8 October 2026 · 09:00 CEST
       </div>
 
     </div>
-
   </div>
 
-
   <script>
+    const targetDate = new Date("2026-10-08T09:00:00+02:00").getTime();
 
-    const targetDate =
-      new Date("2026-10-08T09:00:00+02:00").getTime();
-
-
-    const daysElement =
-      document.getElementById("days");
-
-    const hoursElement =
-      document.getElementById("hours");
-
-    const minutesElement =
-      document.getElementById("minutes");
-
-    const secondsElement =
-      document.getElementById("seconds");
-
-    const countdownNumbers =
-      document.getElementById("countdownNumbers");
-
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+    const countdownNumbers = document.getElementById("countdownNumbers");
 
     let countdownInterval;
 
-
     function updateCountdown() {
-
       const now = Date.now();
-
-      const distance =
-        targetDate - now;
-
+      const distance = targetDate - now;
 
       if (distance <= 0) {
-
         countdownNumbers.innerHTML =
           '<div class="finished-message">Capital Markets Day has started</div>';
 
         clearInterval(countdownInterval);
-
         return;
       }
 
+      const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
+      );
 
-      const days =
-        Math.floor(
-          distance /
-          (1000 * 60 * 60 * 24)
-        );
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+      );
 
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+      );
 
-      const hours =
-        Math.floor(
-          (distance %
-          (1000 * 60 * 60 * 24)) /
-          (1000 * 60 * 60)
-        );
-
-
-      const minutes =
-        Math.floor(
-          (distance %
-          (1000 * 60 * 60)) /
-          (1000 * 60)
-        );
-
-
-      const seconds =
-        Math.floor(
-          (distance %
-          (1000 * 60)) /
-          1000
-        );
-
-
-      daysElement.textContent =
-        days;
-
-      hoursElement.textContent =
-        String(hours).padStart(2, "0");
-
-      minutesElement.textContent =
-        String(minutes).padStart(2, "0");
-
-      secondsElement.textContent =
-        String(seconds).padStart(2, "0");
-    }
-
-
-    updateCountdown();
-
-
-    countdownInterval =
-      setInterval(
-        updateCountdown,
+      const seconds = Math.floor(
+        (distance % (1000 * 60)) /
         1000
       );
 
+      daysElement.textContent = days;
+      hoursElement.textContent = String(hours).padStart(2, "0");
+      minutesElement.textContent = String(minutes).padStart(2, "0");
+      secondsElement.textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+
+    countdownInterval = setInterval(
+      updateCountdown,
+      1000
+    );
   </script>
 
 </body>
