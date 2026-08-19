@@ -17,6 +17,7 @@
       margin: 0;
       padding: 0;
       width: 100%;
+      height: auto;
       background: transparent !important;
       background-color: transparent !important;
     }
@@ -29,8 +30,8 @@
 
     .countdown-wrapper {
       width: 100%;
-      height: 110px;
-      padding: 12px 20px;
+      height: 96px;
+      padding: 0 10px;
 
       display: flex;
       align-items: center;
@@ -43,22 +44,32 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      gap: 34px;
+      gap: 44px;
+
+      margin: 0;
+      padding: 0;
 
       background: transparent !important;
     }
 
     .unit {
-      min-width: 76px;
+      min-width: 82px;
+      margin: 0;
+      padding: 0;
+
       text-align: center;
+
       background: transparent !important;
     }
 
     .number {
       display: block;
 
-      font-size: 36px;
-      line-height: 1;
+      margin: 0;
+      padding: 0;
+
+      font-size: 52px;
+      line-height: 0.95;
       font-weight: 700;
       font-variant-numeric: tabular-nums;
 
@@ -68,11 +79,14 @@
 
     .label {
       display: block;
-      margin-top: 7px;
 
-      font-size: 9px;
+      margin: 7px 0 0;
+      padding: 0;
+
+      font-size: 11px;
       line-height: 1;
-      letter-spacing: 1.4px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
 
       color: #00425c;
@@ -80,33 +94,63 @@
     }
 
     .finished-message {
-      font-size: 24px;
+      margin: 0;
+      padding: 0;
+
+      font-size: 28px;
       font-weight: 700;
+
       color: #00425c;
       background: transparent !important;
     }
 
     @media (max-width: 700px) {
       .countdown-wrapper {
-        height: 105px;
-        padding: 10px 12px;
+        height: 88px;
+        padding: 0 6px;
       }
 
       .numbers {
-        gap: 18px;
+        gap: 22px;
       }
 
       .unit {
-        min-width: 56px;
+        min-width: 62px;
       }
 
       .number {
-        font-size: 30px;
+        font-size: 42px;
       }
 
       .label {
-        font-size: 8px;
+        margin-top: 6px;
+        font-size: 9px;
         letter-spacing: 1px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .countdown-wrapper {
+        height: 80px;
+        padding: 0 4px;
+      }
+
+      .numbers {
+        gap: 10px;
+      }
+
+      .unit {
+        min-width: 54px;
+      }
+
+      .number {
+        font-size: 34px;
+      }
+
+      .label {
+        margin-top: 5px;
+        font-size: 8px;
+        letter-spacing: 0.8px;
       }
     }
   </style>
